@@ -9,3 +9,9 @@
 """
 
 mac = "AAAA:BBBB:CCCC"
+
+print("Old string:", mac)
+
+new_mac = mac.replace(":", ".")
+
+print("New string:", new_mac)
