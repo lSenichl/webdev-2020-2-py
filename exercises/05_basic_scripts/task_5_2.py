@@ -24,3 +24,35 @@ Out[1]: '11111111111111111111111111110000'
 
 Ограничение: Все задания надо выполнять используя только пройденные темы.
 """
+
+ip = input('IP: ')
+
+#ip = '10.1.1.0/24'
+
+print('Network:')
+print("{:8} {:8} {:8} {:8}".format(
+    ip.split('/')[0].split('.')[0], 
+    ip.split('/')[0].split('.')[1], 
+    ip.split('/')[0].split('.')[2],
+    ip.split('/')[0].split('.')[3]))
+print("{:08b} {:08b} {:08b} {:08b}".format(
+    int(ip.split('/')[0].split('.')[0]), 
+    int(ip.split('/')[0].split('.')[1]), 
+    int(ip.split('/')[0].split('.')[2]),
+    int(ip.split('/')[0].split('.')[3])
+), '\n')
+
+print('Mask:')
+print('/' + str(ip.split('/')[1]))
+print("{:<8} {:<8} {:<8} {:<8}".format(
+    int(("1" * int(str(ip.split('/')[1])) + "0" * (32 - int(str(ip.split('/')[1]))))[0:8], 2),
+    int(("1" * int(str(ip.split('/')[1])) + "0" * (32 - int(str(ip.split('/')[1]))))[8:16], 2),
+    int(("1" * int(str(ip.split('/')[1])) + "0" * (32 - int(str(ip.split('/')[1]))))[16:24], 2),
+    int(("1" * int(str(ip.split('/')[1])) + "0" * (32 - int(str(ip.split('/')[1]))))[24:32], 2)
+))
+print("{:08b} {:08b} {:08b} {:08b} ".format(
+    int(("1" * int(str(ip.split('/')[1])) + "0" * (32 - int(str(ip.split('/')[1]))))[0:8], 2),
+    int(("1" * int(str(ip.split('/')[1])) + "0" * (32 - int(str(ip.split('/')[1]))))[8:16], 2),
+    int(("1" * int(str(ip.split('/')[1])) + "0" * (32 - int(str(ip.split('/')[1]))))[16:24], 2),
+    int(("1" * int(str(ip.split('/')[1])) + "0" * (32 - int(str(ip.split('/')[1]))))[24:32], 2)
+))

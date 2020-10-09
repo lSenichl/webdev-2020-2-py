@@ -17,3 +17,8 @@
 Ограничение: Все задания надо выполнять используя только пройденные темы.
 
 """
+
+with open('CAM_table.txt', 'r') as file:
+    for file_lines in file:
+        if file_lines.find('/') != -1:
+            print(file_lines.strip('\n').split()[0] + '\t' + file_lines.strip('\n').split()[1] + '\t' + file_lines.strip('\n').split()[3])

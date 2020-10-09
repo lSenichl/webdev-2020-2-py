@@ -17,3 +17,13 @@
 """
 
 ignore = ["duplex", "alias", "Current configuration"]
+
+from sys import argv
+
+comands = argv[1]
+argv_end_file = argv[2]
+
+with open(comands, 'r') as file, open(argv_end_file, 'a') as end_file:
+    for file_lines in file:
+        if file_lines.find(ignore[0]) == -1 and file_lines.find(ignore[1]) == -1 and file_lines.find(ignore[2]) == -1:
+            end_file.write(file_lines)
