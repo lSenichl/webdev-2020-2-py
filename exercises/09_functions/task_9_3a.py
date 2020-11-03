@@ -23,3 +23,34 @@
 
 Ограничение: Все задания надо выполнять используя только пройденные темы.
 """
+
+def get_int_vlan_map(config_filename):
+    access_config = {}
+    trunk_config = {}
+    
+    with open(config_filename, 'r') as file:
+        for line in file:
+            if line.find('FastEthernet') != -1:
+                interface = line.split()[-1]
+                line = file.readline()
+
+                if line.find('mode access') != -1:
+                    line = file.readline()
+                    access_vlan = line.split()[-1]
+
+                    if access_vlan.isdigit():
+                        access_config[interface] = int(access_vlan)
+                    else:
+                        access_config[interface] = 1
+
+                elif line.find('encapsulation dot1q') != -1:
+                    line = file.readline()
+                    trunk_vlan_temp = line.split()[-1].split(',')
+                    trunk_vlan = []
+
+                    for i in trunk_vlan_temp:
+                        trunk_vlan.append(int(i))
+
+                    trunk_config[interface] = trunk_vlan
+
+        return access_config, trunk_config
