@@ -44,8 +44,34 @@ Cгенерировать топологию, которая соответст�
 
 # эти заготовки написаны чтобы показать в какой момент должна
 # рисоваться топология (после вызова функции)
+import os
+os.environ["PATH"] += os.pathsep + 'C:/Program Files (x86)/Graphviz/bin'
+
+from draw_network_graph import *
+from task_11_1 import parse_cdp_neighbors
+
 def create_network_map(filenames):
-    pass
+
+    temp = {}
+    for i in filenames:
+        with open(i) as f:
+            temp.update(parse_cdp_neighbors(f.read()))
+
+    result = {}
+    lists = []
+
+    for key, value in temp.items():
+        
+        key_str = ''.join(list(key))
+        value_str = ''.join(list(value))
+        if key_str not in ''.join(lists) or value_str not in ''.join(lists):
+            lists.append(key_str)
+            lists.append(value_str)
+            result[key] = value
+        else:
+            pass
+
+    return result
 
 
 if __name__ == "__main__":
@@ -58,4 +84,4 @@ if __name__ == "__main__":
 
     topology = create_network_map(infiles)
     # рисуем топологию:
-    # draw_topology(topology)
+    draw_topology(topology)
