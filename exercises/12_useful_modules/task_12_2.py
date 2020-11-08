@@ -30,3 +30,27 @@
  '172.21.41.129', '172.21.41.130', '172.21.41.131', '172.21.41.132']
 
 """
+
+def convert_ranges_to_ip_list(list_of_ips_and_ranges):
+    ip = []
+
+    for nip in list_of_ips_and_ranges:
+        print(nip)
+        if nip.find('-') != -1: 
+            first_ip = nip.split('-')[0]
+            last_octet_of_first_ip = int(first_ip.split('.')[-1])
+
+            if nip.count('.') < 4:
+                last_octet_of_second_ip = int(nip.split('-')[-1])
+            else:
+                last_octet_of_second_ip = int(nip[nip.rfind('.')+1:])
+
+            first_three_octets_of_ip = first_ip[:first_ip.rfind('.')+1]
+            
+            for new_ip in range(last_octet_of_first_ip, last_octet_of_second_ip + 1):
+                ip.append(first_three_octets_of_ip + str(new_ip))
+
+        else:
+            ip.append(nip)
+
+    return ip

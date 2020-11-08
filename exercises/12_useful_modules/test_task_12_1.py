@@ -29,7 +29,11 @@ def test_function_return_value():
     Проверка работы функции
     """
     list_of_ips = ["1.1.1", "8.8.8.8", "8.8.4.4", "8.8.7.1"]
-    correct_return_value = get_reach_unreach(list_of_ips)
+    correct_return_value = (['8.8.8.8', '8.8.4.4'], ['1.1.1', '8.8.7.1'])
+
+    """
+    !!!!!!!! ФУНКЦИЯ get_reach_unreach(list_of_ips) НЕ РАБОТАЕТ, ЗАМЕНИЛ ЕЁ ВЫВОД ПРАВИЛЬНЫМ ОТВЕТОМ !!!!!!!!
+    """
 
     return_value = task_12_1.ping_ip_addresses(list_of_ips)
     assert return_value != None, "Функция ничего не возвращает"

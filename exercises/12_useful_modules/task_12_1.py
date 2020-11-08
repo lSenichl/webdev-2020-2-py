@@ -14,3 +14,25 @@
 
 Ограничение: Все задания надо выполнять используя только пройденные темы.
 """
+
+import subprocess
+
+
+def ping_ip_addresses(list_of_ips):
+
+    rreply = []
+    wreply = []
+
+    for nip in list_of_ips:
+
+        reply = subprocess.run(['ping', nip])
+        if reply.returncode == 0:
+            rreply.append(nip)
+        else:
+            wreply.append(nip)
+
+    result = (rreply, wreply)
+    
+    return result
+
+

@@ -23,3 +23,17 @@ Reachable    Unreachable
 
 Для этого задания нет тестов
 """
+from tabulate import tabulate
+
+r = ['10.1.1.1', '10.1.1.2']
+u = ['10.1.1.7','10.1.1.8','10.1.1.9']
+
+def print_ip_table(r,u):
+    res = {'Reachable': [], 'Unreachable': []}
+    for i in r:
+        res['Reachable'].append(i)
+    for i in u:
+        res['Unreachable'].append(i)
+    print(tabulate(res, headers='keys'))
+
+print_ip_table(r,u)
